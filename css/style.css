@@ -1,0 +1,37 @@
+.resultado{
+    display: none;
+}
+
+ .resultado-robin{
+     display: none;
+     overflow: auto;
+} 
+#promedios-robin{
+    display: none;
+    position: absolute;
+    left: 35%;
+    top: 25%;
+    height: 50%;
+    width: 30%;
+    opacity: 1;
+    order: 1;
+}
+/* body div.container,nav{
+    opacity: 0.2;
+} */
+.var{
+    font-size: 10px;
+}
+.sin-borde{
+    border: 1px solid white;
+}
+#quantum{
+    border: 0.8px solid rgb(206, 212, 218);
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    text-align: center;
+}
+td.azul{
+    background-color: rgb(79, 129, 189);
+}

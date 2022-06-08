@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Round Robin</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Planificación de Procesos : Estrategias</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./index.html">FCFS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./robin.html">Round Robin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./sjf.html">(SJF) / SPN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h5>ESTRATEGIAS - Round Robin</h5>
+        <hr>
+        <div class="row mb-2">
+            <div class="col-md-6 mb-3">
+                <div class="mb-3">
+                    <label >Quantum :</label>
+                    <input type="text" id="quantum">
+                </div>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Proceso</td>
+                            <td>Arrive Time</td>
+                            <td>Burst Time</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" id="letra">
+                            </td>
+                            <td><input type="text" class="form-control" id="llegada"></td>
+                            <td><input type="text" class="form-control" id="duracion"></td>
+                            <td><button class="btn btn-outline-success" onclick="agregar()">Añadir</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table mt-4">
+                    <tbody class="procesos">
+                        <tr>
+                            <td class="text-center">Proceso</td>
+                            <td class="text-center">Arrive Time</td>
+                            <td class="text-center">Burst Time</td>
+                            <td class="text-center"></td>
+                        </tr>
+                        <!-- <tr>
+                            <td class="text-center">P1</td>
+                            <td class="text-center">10</td>
+                            <td class="text-center"><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                         -->
+                    </tbody>
+                </table>
+                <div class="text-center"><button class="btn btn-outline-success w-75" onclick="result()">Diagrama de Gantt</button>
+                </div>
+            </div>
+            <div class="col-md-6 resultado-robin">
+                <div class="d-flex justify-content-between mb-3">
+                    <p class="fs-4"><u>Diagrama de Gantt</u></p>
+                    <button class="btn btn-outline-success" onclick="promedios()">Resultado</button>
+                </div>
+                <table class="table table-bordered">
+                    <tbody id="robintable">                                      
+                        <!-- <tr>
+                            <td>P4</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>  -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="promedios-robin" class="bg-white">
+        <div class="w-100 d-flex justify-content-end mb-2">
+            <button class="btn btn-danger" onclick="esconder()">X</button>
+        </div>
+        <table class="table text-white table-bordered">
+            <tbody class="tabla-promedios">
+                <tr>
+                    <td class="text-center azul">Process</td>
+                    <td class="text-center azul">(WT) Waiting Time</td>
+                    <td class="text-center azul">(CT) Complete Time</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/robin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"
+        integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
