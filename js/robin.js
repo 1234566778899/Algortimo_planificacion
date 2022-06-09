@@ -155,18 +155,14 @@ function result() {
     for (let i = 0; i < arr_procesos.length; i++) {
         cadena += `<td class="text-center">${arr_procesos[i].letra}</td>`;
         for (let j = 0; j < cont; j++) {
-            if (matriz[i][j] == -1) {
-                cadena += `<td class="text-white">1</td>`;
-            } else if (matriz[i][j] == 0) {
-                cadena += `<td class="bg-warning">0</td>`;
-            } else if (matriz[i][j] == 1) {
-                cadena += `<td>1</td>`;
-            } else if (matriz[i][j] == 2) {
-                cadena += `<td>2</td>`;
-            } else if (matriz[i][j] == 3) {
-                cadena += `<td>3</td>`;
-            } else if (matriz[i][j] == 4) {
-                cadena += `<td>4</td>`;
+             for(let k=-1;k<arr_procesos.length;k++){
+                if(matriz[i][j]==k && k==-1){
+                    cadena += `<td class="text-white">1</td>`;
+                }else if(matriz[i][j]==k && k==0){
+                    cadena += `<td class="bg-primary text-white text-center">0</td>`;
+                }else if(matriz[i][j]==k){
+                    cadena += `<td class="text-center">${k}</td>`;
+                }
             }
         }
         $('#robintable').append(`<tr>${cadena}</tr>`);
