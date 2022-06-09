@@ -109,7 +109,7 @@ function result() {
             cola.splice(0, 1);
             s = 0;
         }
-        s++;
+       
         arr_procesos.forEach(element => {
             if (element.llegada <= cont && !element.finalizado && element.letra != ultimo) {
                 if (!existe(cola, element.letra)) {
@@ -130,6 +130,8 @@ function result() {
             op++;
         }
         if (cola.length > 0) {
+            
+             s++;
             ultimo = cola[0];
             arr_procesos[indice(cola[0])].contador += 1;
             if (!arr_procesos[indice(cola[0])].empezo) {
