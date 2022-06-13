@@ -91,7 +91,25 @@ function menor() {
     }
     return arr_procesos[indi];
 }
+function convert(arr) {
+    let min = 9999;
+    let idx = -1;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr_procesos[indice(arr[i])].duracion < min) {
+            min = arr_procesos[indice(arr[i])].duracion;
+            idx = i;
+        }
+    }
 
+    let aux = [];
+    aux.push(arr[idx]);
+    for (let i = 0; i < arr.length; i++) {
+        if (i != idx) {
+            aux.push(arr[i]);
+        }
+    }
+    return aux;
+}
 function result() {
     for (let i = 0; i < arr_procesos.length; i++) {
         arr_procesos[i].reiniciar();
@@ -109,16 +127,23 @@ function result() {
 
     let cont = 0;
     let cola = [];
-
+    let empezo = true;
     while (true) {
 
-        if (menor().llegada <= cont) {
-            if (!existe(cola, menor().letra)) {
-                cola.push(menor().letra);
+       for (let i = 0; i < arr_procesos.length; i++) {
+            if (arr_procesos[i].llegada <= cont && !arr_procesos[i].finalizado) {
+                if (!existe(cola, arr_procesos[i].letra)) {
+                    cola.push(arr_procesos[i].letra);
+                }
             }
         }
-
+        console.log(cont, cola);
         if (cola.length > 0) {
+            if (empezo) {
+                cola = convert(cola);
+            }
+            empezo = false;
+            console.log(cont, cola);
             matriz[indice(cola[0])][cont] = 0;
             arr_procesos[indice(cola[0])].contador++;
             if (!arr_procesos[indice(cola[0])].empezo) {
@@ -129,6 +154,7 @@ function result() {
                 arr_procesos[indice(cola[0])].finalizado = true;
                 arr_procesos[indice(cola[0])].fin = cont + 1;
                 cola.splice(0, 1);
+                empezo = true;
             }
         }
         cont++;
@@ -143,18 +169,14 @@ function result() {
     for (let i = 0; i < arr_procesos.length; i++) {
         cadena += `<td class="text-center">${arr_procesos[i].letra}</td>`;
         for (let j = 0; j < cont; j++) {
-            if (matriz[i][j] == -1) {
-                cadena += `<td class="text-white">1</td>`;
-            } else if (matriz[i][j] == 0) {
-                cadena += `<td class="bg-warning">0</td>`;
-            } else if (matriz[i][j] == 1) {
-                cadena += `<td>1</td>`;
-            } else if (matriz[i][j] == 2) {
-                cadena += `<td>2</td>`;
-            } else if (matriz[i][j] == 3) {
-                cadena += `<td>3</td>`;
-            } else if (matriz[i][j] == 4) {
-                cadena += `<td>4</td>`;
+            for (let k = -1; k < arr_procesos.length; k++) {
+                if (matriz[i][j] == k && k == -1) {
+                    cadena += `<td class="text-white">1</td>`;
+                } else if (matriz[i][j] == k && k == 0) {
+                    cadena += `<td class="bg-primary text-white text-center">0</td>`;
+                } else if (matriz[i][j] == k) {
+                    cadena += `<td class="text-center">${k}</td>`;
+                }
             }
         }
         $('#robintable').append(`<tr>${cadena}</tr>`);
